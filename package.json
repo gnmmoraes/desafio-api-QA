@@ -1,15 +1,13 @@
 {
   "name": "desafio-api-qa",
   "version": "1.0.0",
-  "description": "",
+  "description": "Desafio cypress para a vaga de QA",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "test": "npx cypress run"
   },
   "keywords": [],
-  "author": "",
+  "author": "Gabriel Moraes",
   "license": "ISC",
   "devDependencies": {
     "cypress": "^14.5.0"
