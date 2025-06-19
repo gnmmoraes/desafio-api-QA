@@ -12,7 +12,7 @@ describe('Validation API Login', () => {
       method: 'POST',
       body: user,
       contentType: 'application/json',
-      failOnStatusCode: false
+      failOnStatusCode: true
     }).then((response) => {
       expect(response.status).to.eql(200)
       expect(response.body.message).to.eql('Login realizado com sucesso')
