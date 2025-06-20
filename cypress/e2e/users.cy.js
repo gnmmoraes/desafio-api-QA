@@ -5,7 +5,7 @@ describe('Users', () => {
   var userId = ''
   const users = {
     nome: 'Gabriel',
-    email: 'gabriel@gmail.com',
+    email: faker.internet.email().toLocaleLowerCase(),
     password: '123456',
     administrador: 'false'
   }        
