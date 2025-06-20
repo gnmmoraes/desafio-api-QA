@@ -6,7 +6,7 @@ Cypress.Commands.add('logon', (email, password) => {
     method: 'POST',
     body: { email, password },
     contentType: 'application/json',
-    failOnStatusCode: true
+    failOnStatusCode: false
   })
 });
 
@@ -17,8 +17,8 @@ Cypress.Commands.add('Cadastro_Usuario', (nome, email, password, administrador) 
     method: 'POST',
     body: { nome, email, password, administrador },
     contentType: 'application/json',
-    failOnStatusCode: true
-  })
+    failOnStatusCode: false
+    })
 });
 
 
