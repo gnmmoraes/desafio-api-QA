@@ -3,9 +3,11 @@ import { faker } from '@faker-js/faker'
 
 describe('Validation API Product', () => {
   
-  before(() => {    
+  var id_adm = ''
+
+  before(() => {         
     cy.Cadastro_Usuario(user_adm.nome, user_adm.email, user_adm.password, user_adm.administrador)
-    cy.Cadastro_Usuario(user.nome, user.email, user.password, user.administrador)    
+    cy.Cadastro_Usuario(user.nome, user.email, user.password, user.administrador)
   })
 
   const user_adm = {
@@ -30,7 +32,7 @@ describe('Validation API Product', () => {
   }
 
   it('Cadastrar novo produto', () => {
-    
+        
     cy.logon(user_adm.email, user_adm.password).then((response) => {           
       cy.request({
         url: '/produtos',
@@ -45,6 +47,8 @@ describe('Validation API Product', () => {
         expect(res.status).to.eql(201)
         expect(res.body.message).to.eql('Cadastro realizado com sucesso')
         expect(res.body._id).to.exist
+        id_adm = res.body._id
+        
       })
     })
   }),
@@ -106,17 +110,35 @@ describe('Validation API Product', () => {
     })
   })
 
+  it('Produto encontrado por ID', () => {
+    
+    cy.logon(user_adm.email, user_adm.password).then((response) => {
+      cy.request({
+        url: `/produtos/${id_adm}`,
+        method: 'GET',
+        failOnStatusCode: false
+      }).then((res) => {
+        expect(res.status).to.eql(200)
+        expect(res.body.nome).to.eql(product.nome)
+        expect(res.body.preco).to.eql(product.preco)
+        expect(res.body.descricao).to.eql(product.descricao)
+        expect(res.body.quantidade).to.eql(product.quantidade)
+        expect(res.body._id).to.exist
+      })
+    })
+  }),
 
-
-
-
-
-
-
-
-
-
-
-
-  
+  it('Produto não encontrado por ID', () => {
+    
+    cy.logon(user_adm.email, user_adm.password).then((response) => {
+      cy.request({
+        url: '/produtos/ixioi9aUNDbDB7oo',
+        method: 'GET',
+        failOnStatusCode: false
+      }).then((res) => {
+        expect(res.status).to.eql(400)
+        expect(res.body.message).to.eql('Produto não encontrado')
+      })
+    })
+  })  
 })
