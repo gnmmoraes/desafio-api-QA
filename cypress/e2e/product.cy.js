@@ -47,8 +47,7 @@ describe('Validation API Product', () => {
         expect(res.status).to.eql(201)
         expect(res.body.message).to.eql('Cadastro realizado com sucesso')
         expect(res.body._id).to.exist
-        id_adm = res.body._id
-        
+        id_adm = res.body._id        
       })
     })
   }),
@@ -138,6 +137,68 @@ describe('Validation API Product', () => {
       }).then((res) => {
         expect(res.status).to.eql(400)
         expect(res.body.message).to.eql('Produto não encontrado')
+      })
+    })
+  }),
+
+  it('Produto atualizado com sucesso', () => {
+
+    var product_atualizado = {
+      nome: faker.commerce.productName(),
+      preco: 10,
+      descricao: faker.commerce.productDescription(),
+      quantidade: 10,
+    }
+    
+    cy.logon(user_adm.email, user_adm.password).then((response) => {
+      cy.request({
+        url: `/produtos/${id_adm}`,
+        method: 'PUT',
+        body: product_atualizado,
+        headers: {
+          'Authorization': response.body.authorization
+        },      
+        contentType: 'application/json',
+        failOnStatusCode: true
+      }).then((res) => {
+        expect(res.status).to.eql(200)
+        expect(res.body.message).to.eql('Registro alterado com sucesso')  
+      })
+    })
+  }),
+  
+  it('Produto excluido com sucesso', () => {
+    
+    cy.logon(user_adm.email, user_adm.password).then((response) => {
+      cy.request({
+        url: `/produtos/${id_adm}`,
+        method: 'DELETE',
+        headers: {
+          'Authorization': response.body.authorization
+        },      
+        contentType: 'application/json',
+        failOnStatusCode: true
+      }).then((res) => {
+        expect(res.status).to.eql(200)
+        expect(res.body.message).to.eql('Registro excluído com sucesso')        
+      })
+    })
+  }),
+
+  it('Nenhum registro excluído', () => {
+    
+    cy.logon(user_adm.email, user_adm.password).then((response) => {
+      cy.request({
+        url: `/produtos/${id_adm}`,
+        method: 'DELETE',
+        headers: {
+          'Authorization': response.body.authorization
+        },      
+        contentType: 'application/json',
+        failOnStatusCode: true
+      }).then((res) => {
+        expect(res.status).to.eql(200)
+        expect(res.body.message).to.eql('Nenhum registro excluído')        
       })
     })
   })  
