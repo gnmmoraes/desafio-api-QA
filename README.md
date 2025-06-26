@@ -11,8 +11,7 @@ Este projeto contém testes automatizados utilizando Cypress.
 
 1. Clone o repositório:
 ```bash
-git clone [url-do-seu-repositorio]
-cd desafio-api-QA
+git clone [https://github.com/gnmmoraes/desafio-api-QA.git]
 ```
 
 2. Instale as dependências:
@@ -55,11 +54,12 @@ cypress/
 
 ## Scripts Disponíveis
 
-- `npm run cypress:open` - Abre a interface gráfica do Cypress
-- `npm run cypress:run` - Executa os testes em modo headless
+- `npx cypress open` - Abre a interface gráfica do Cypress
+- `npx cypress run` - Executa os testes em modo headless
 
 ## Relatórios
 
 Os resultados dos testes podem ser encontrados em:
 - Screenshots: `cypress/screenshots/` (em caso de falhas)
-- Vídeos: `cypress/videos/` (quando habilitado)
+
+image.png

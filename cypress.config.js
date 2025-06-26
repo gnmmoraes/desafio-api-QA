@@ -5,6 +5,6 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       
     },
-    baseUrl: "https://serverest.dev"    
+    baseUrl: "https://serverest.dev",
   },
 });
