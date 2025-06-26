@@ -9,7 +9,7 @@ describe('Validation API Login', () => {
       password: 'teste'
     }
 
-    cy.logon(user.email, user.password).then((response) => {
+    cy.login(user.email, user.password).then((response) => {
       expect(response.status).to.eql(200)
       expect(response.body.message).to.eql('Login realizado com sucesso')
       expect(response.body.authorization).to.exist
@@ -23,7 +23,7 @@ describe('Validation API Login', () => {
         password: 'teste'
       }
 
-      cy.logon(user.email, user.password).then((response) => {
+      cy.login(user.email, user.password).then((response) => {
         expect(response.status).to.eql(400)
         expect(response.body.email).to.eql('email deve ser um email válido')
       })
@@ -35,7 +35,7 @@ describe('Validation API Login', () => {
         password: 'teste'
       }
 
-      cy.logon(user.email, user.password).then((response) => {
+      cy.login(user.email, user.password).then((response) => {
         expect(response.status).to.eql(400)
         expect(response.body.email).to.eql('email não pode ficar em branco')
       })
@@ -48,7 +48,7 @@ describe('Validation API Login', () => {
         password: '#'
       }
 
-      cy.logon(user.email, user.password).then((response) => {
+      cy.login(user.email, user.password).then((response) => {
         expect(response.status).to.eql(401)
         expect(response.body.message).to.eql('Email e/ou senha inválidos')
       })
@@ -61,7 +61,7 @@ describe('Validation API Login', () => {
         password: ''
       }
 
-      cy.logon(user.email, user.password).then((response) => {
+      cy.login(user.email, user.password).then((response) => {
         expect(response.status).to.eql(400)
         expect(response.body.password).to.eql('password não pode ficar em branco')
       })

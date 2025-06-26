@@ -33,7 +33,7 @@ describe('Validation API Product', () => {
 
   it('Cadastrar novo produto', () => {
         
-    cy.logon(user_adm.email, user_adm.password).then((response) => {           
+    cy.login(user_adm.email, user_adm.password).then((response) => {           
       cy.request({
         url: '/produtos',
         method: 'POST',
@@ -54,7 +54,7 @@ describe('Validation API Product', () => {
 
   it('Produto já cadastrado', () => {
     
-    cy.logon(user_adm.email, user_adm.password).then((response) => {           
+    cy.login(user_adm.email, user_adm.password).then((response) => {           
       cy.request({
         url: '/produtos',
         method: 'POST',
@@ -73,7 +73,7 @@ describe('Validation API Product', () => {
 
   it('Token ausente, inválido ou expirado', () => {
     
-    cy.logon(user_adm.email, user_adm.password).then((response) => {           
+    cy.login(user_adm.email, user_adm.password).then((response) => {           
       cy.request({
         url: '/produtos',
         method: 'POST',
@@ -92,7 +92,7 @@ describe('Validation API Product', () => {
 
   it('Exclusiva para administradores', () => {
     
-    cy.logon(user.email, user.password).then((response) => {                 
+    cy.login(user.email, user.password).then((response) => {                 
       cy.request({
         url: '/produtos',
         method: 'POST',
@@ -111,7 +111,7 @@ describe('Validation API Product', () => {
 
   it('Produto encontrado por ID', () => {
     
-    cy.logon(user_adm.email, user_adm.password).then((response) => {
+    cy.login(user_adm.email, user_adm.password).then((response) => {
       cy.request({
         url: `/produtos/${id_adm}`,
         method: 'GET',
@@ -129,7 +129,7 @@ describe('Validation API Product', () => {
 
   it('Produto não encontrado por ID', () => {
     
-    cy.logon(user_adm.email, user_adm.password).then((response) => {
+    cy.login(user_adm.email, user_adm.password).then((response) => {
       cy.request({
         url: '/produtos/ixioi9aUNDbDB7oo',
         method: 'GET',
@@ -150,7 +150,7 @@ describe('Validation API Product', () => {
       quantidade: 10,
     }
     
-    cy.logon(user_adm.email, user_adm.password).then((response) => {
+    cy.login(user_adm.email, user_adm.password).then((response) => {
       cy.request({
         url: `/produtos/${id_adm}`,
         method: 'PUT',
@@ -169,7 +169,7 @@ describe('Validation API Product', () => {
   
   it('Produto excluido com sucesso', () => {
     
-    cy.logon(user_adm.email, user_adm.password).then((response) => {
+    cy.login(user_adm.email, user_adm.password).then((response) => {
       cy.request({
         url: `/produtos/${id_adm}`,
         method: 'DELETE',
@@ -187,7 +187,7 @@ describe('Validation API Product', () => {
 
   it('Nenhum registro excluído', () => {
     
-    cy.logon(user_adm.email, user_adm.password).then((response) => {
+    cy.login(user_adm.email, user_adm.password).then((response) => {
       cy.request({
         url: `/produtos/${id_adm}`,
         method: 'DELETE',
